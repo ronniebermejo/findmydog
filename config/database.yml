@@ -55,7 +55,16 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: angularjs-rails4_production
+  database: findmydog
   pool: 5
-  username: ronnie
-  password:
+  username: adminidpejkq
+  password: H5dhaSQIuudj
+
+#  PostgreSQL 9.2 database added.  Please make note of these credentials:
+#
+#     Root User: adminidpejkq
+#     Root Password: H5dhaSQIuudj
+#     Database Name: findmydog
+#
+#  Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
+
