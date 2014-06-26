@@ -1,0 +1,12 @@
+div class="row"
+  div
+    ul class="small-block-grid-3"
+      li class="small-view" ng-repeat="pet in pets"
+        img src="http://placehold.it/150x150&text={{pet.name}}" align="top"
+        input type="button" value="view" ng-click="show($index)"
+        input type="button" value="delete" ng-click="delete($index)"
+        i class="fi-save"
+  alert
+    | alert
+
+

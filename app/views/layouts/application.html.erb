@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body ng-app="findMyDogApp">
+<div class="row collapse">
+  <div class="large-8 small-9 columns">
+    Buscar por:
+    <select>
+      <option value="Ciudad">Ciudad</option>
+      <option value="Ciudad">Raza</option>
+      <option value="Ciudad">Color</option>
+    </select>
+    <input type="text" placeholder="Busqueda">
+  </div>
+  <div class="large-4 small-3 columns">
+    <a href="#" class="alert button expand">Search</a>
+  </div>
+</div>
+
+<div ng-controller="findMyDogController">
+  <div class="row">
+    <%= image_tag('petfinder-lg-300x297.jpg', align: 'left') %>
+    <h2>Find your dog</h2>
+    <h5>Buscas</h5>
+    <h5>Encontraste</h5>
+    <small>El lugar perfecto para buscar a tu mascota</small>
+
+    <%= render :partial => 'app/new_lost_report' %>
+
+    <hr>
+
+  </div>
+
+
+  <%= yield %>
+</div>
+<%= javascript_include_tag "application" %>
+</body>
+</html>
