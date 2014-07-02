@@ -58,5 +58,7 @@ AngularjsRails4::Application.routes.draw do
     resources :pet, only: [:index, :show, :create, :update, :destroy]
   end
 
+  resources :report
+
 
 end
