@@ -51,10 +51,15 @@ end
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry'
+
+
 end
 
 group :test do
   gem 'rspec'
+  gem 'capybara-webkit'
   gem 'rspec-rails'
 end
 

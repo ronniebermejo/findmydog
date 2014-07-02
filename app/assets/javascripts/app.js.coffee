@@ -39,3 +39,8 @@ app.controller 'findMyDogController', ($scope, Pet) ->
     $scope.pets.push Pet.save name: $scope.pet.name, comments: $scope.pet.comments
     $scope.post = new Post()
 
+  # Create
+  $scope.createLostReport = () ->
+    alert("Report")
+
+
