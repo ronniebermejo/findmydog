@@ -8,6 +8,8 @@ gem 'pg'
 gem 'foundation-rails'
 gem 'angularjs-rails-resource', '~> 1.1.1'
 gem 'slim-rails'
+gem 'devise'
+gem 'factory_girl', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -53,14 +55,17 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
-
-
+  gem 'zeus', require: false
+  gem 'awesome_print'
 end
 
 group :test do
   gem 'rspec'
-  gem 'capybara-webkit'
+  gem 'poltergeist'
   gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
 
 group :assets do

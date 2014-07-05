@@ -1,4 +1,8 @@
-form
-  input type="text" name="name" placeholder="name" ng-model="pet.name"
-  input type="text" name="comments" placeholder="comments" ng-model="pet.comment"
-  input type="button" value="create" ng-click="create()"
+div class="row"
+  form
+    input type="text" name="name" placeholder="Nombre mascota" ng-model="pet.name"
+    select ng-model="pet.reported_as" name="reported_as"
+      option perdido
+      option encontrado
+    input type="text" name="comments" placeholder="Comentarios" ng-model="pet.comment"
+    input type="button" value="create" ng-click="create()"
