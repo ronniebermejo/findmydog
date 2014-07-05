@@ -19,7 +19,12 @@ class Api::PetController < ActionController::Base
   end
 
   def create
-    Pet.create(name: params[:name], comments: params[:comments]).save!
+    pet = Pet.new
+    pet.name = params[:name]
+    pet.comments = params[:comments]
+    pet.reported_as = params[:reported_as]
+    pet.owner = Owner.find(current_user.id)
+    pet.save!
   end
 
   def destroy

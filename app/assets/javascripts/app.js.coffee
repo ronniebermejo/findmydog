@@ -13,7 +13,7 @@ app.config ["$httpProvider", ($httpProvider) ->
   $httpProvider.defaults.headers.common['Accept'] = "application/json"
 ]
 
-app.factory "Pet", ($resource) -> $resource "./api/pet/:id", id: "@id"
+app.factory "Pet", ($resource) -> $resource "/api/pet/:id", id: "@id"
 
 app.controller 'findMyDogController', ($scope, Pet) ->
 
@@ -36,8 +36,9 @@ app.controller 'findMyDogController', ($scope, Pet) ->
 
   # Create
   $scope.create = () ->
-    $scope.pets.push Pet.save name: $scope.pet.name, comments: $scope.pet.comments
-    $scope.post = new Post()
+    $scope.pets.push Pet.save name: $scope.pet.name, comments: $scope.pet.comment, reported_as: $scope.pet.reported_as
+    alert 1
+    $scope.pet.save
 
   # Create
   $scope.createLostReport = () ->

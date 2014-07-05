@@ -16,18 +16,8 @@
 <%= render :partial => 'app/main_menu' %>
 <div ng-controller="findMyDogController">
   <div class="row">
-    <div class="large-8 columns">
-      <%= image_tag('petfinder-lg-300x297.jpg', align: 'left') %>
-      <h3>Como podemos ayudarte?</h3>
-      <%= link_to "Buscas a tu perro perdido?", 'report', { :class => "button secondary small" } %>
-      <a class="button secondary small" ng-click="search()">Encotraste a un perro?</a>
-      <br>
-      <small>El lugar perfecto para buscar a tu mascota</small>
-      <hr>
-    </div>
-    <%= render :partial => 'app/search_form' %>
+    <%= yield %>
   </div>
-  <%= yield %>
 </div>
  <%= javascript_include_tag "application" %>
 </body>

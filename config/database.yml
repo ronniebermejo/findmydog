@@ -44,7 +44,7 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: angularjs-rails4_test
@@ -57,8 +57,10 @@ production:
   encoding: unicode
   database: findmydog
   pool: 5
-  username: adminidpejkq
-  password: H5dhaSQIuudj
+  #username: adminidpejkq
+  #password: H5dhaSQIuudj
+  username: ronnie
+  password:
 
 #  PostgreSQL 9.2 database added.  Please make note of these credentials:
 #
@@ -68,3 +70,6 @@ production:
 #
 #  Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
 
+
+cucumber:
+  <<: *test

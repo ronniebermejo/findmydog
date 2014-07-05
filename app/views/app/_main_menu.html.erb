@@ -2,9 +2,8 @@
   <ul class="title-area">
     <li class="name">
       <h1>
-        <a href="#">
-          Find my dog
-        </a>
+        <%= link_to 'Principal' , root_path %>
+
       </h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
@@ -40,7 +39,13 @@
         </ul>
       </li>
       <li class="divider"></li>
-      <li><a href="#">Log in</a></li>
+      <li>
+        <% if user_signed_in? %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+      <% else %>
+          <%= link_to('Login', new_user_session_path)  %>
+      <% end %>
+      </li>
       <li class="divider"></li>
       <li class="has-dropdown">
         <a href="#">Admin</a>
