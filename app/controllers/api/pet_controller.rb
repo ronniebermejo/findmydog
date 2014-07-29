@@ -1,8 +1,4 @@
-class Api::PetController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # TODO Read about :null_session
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class Api::PetController < ApiController
 
   def index
     @pet = Pet.all
@@ -19,17 +15,43 @@ class Api::PetController < ActionController::Base
   end
 
   def create
-    pet = Pet.new
-    pet.name = params[:name]
-    pet.comments = params[:comments]
-    pet.reported_as = params[:reported_as]
-    pet.owner = Owner.find(current_user.id)
-    pet.save!
+
+    @pet = Pet.new(pet_params)
+
+    if @pet.save
+      render
+    else
+      render json: {
+          message: 'Validation Failed',
+          errors: @pet.errors.full_messages
+      }, status: 442
+    end
+
   end
 
   def destroy
     Pet.find(params[:id]).destroy
     head :ok
   end
+
+  private
+
+  def pet_params
+    {
+      name: params[:name],
+      comments: params[:comments],
+      reported_as: params[:reported_as],
+      owner: owner,
+    }
+  end
+
+  def owner
+
+    Owner.find_or_create_by(name: params[:name])
+
+  end
+
+
+
 
 end

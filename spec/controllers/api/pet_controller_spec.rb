@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Api::PetController do
 
-  let(:mugus) { Pet.create(name: "Mugus", comments: "Enano") }
-  let(:monga) { Pet.create(name: "Monga", comments: "Enana") }
+  let(:mugus) { create(:pet) }
+  let(:monga) { create(:pet) }
 
   describe '.index' do
 
@@ -16,7 +16,7 @@ describe Api::PetController do
       pet2 = {"id"=>2, "name"=>"Monga", "comments"=>"Enana"}
       pet['pet'] = [ pet1, pet2 ]
 
-      expect(json_response).to eq(pet)
+      expect(response_json).to eq(pet)
 
     end
 

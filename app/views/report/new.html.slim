@@ -1,1 +1,29 @@
-=render 'app/new_lost_report'
+div class="row"
+  div class="column large-8 small-10"
+    h2 Reporte de mascota extraviada
+    p Usuario:
+    p  = current_user.email
+    form
+        input type="text" name="name" placeholder="Nombre mascota" ng-model="pet.name"
+        div class="row"
+         div class="column large-4 small-5"
+          input type="text" name="lost_in" placeholder="Lugar donde se perdio"
+         div class="column large-4 small-5"
+          button class="tiny radius alert"
+           |mapa
+        label for="animal" Animal
+        select ng-model="pet.reported_as" name="animal"
+          option Perro
+          option Gato
+          option Vaca
+          option Zorro
+        textarea name="comments" placeholder="Commentarios, Señas particulares" ng-model="pet.comment"
+        input type="button" value="create" ng-click="create()"
+  div class="column large-4 small-2"
+    br
+    ul class="recommendations"
+     h5 Te recomendamos
+     li
+      |regresar a lugar donde viste por ultima vez a tu mascota
+     li
+      |dejar agua cerca del lugar
