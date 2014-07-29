@@ -17,5 +17,16 @@
 /log/*.log
 /tmp
 
+## Environment normalisation:
+/.bundle
+/vendor/bundle
+
+/cache
+/capybara*
+/capybara-*.html
+
+# Ignore local asset pipline cache files
+/public/assets
+
 # Zeus
 .zeus.sock
