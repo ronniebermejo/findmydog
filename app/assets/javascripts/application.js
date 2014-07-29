@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require angular.min
 //= require mm-foundation-tpls-0.2.2.min
-//= require angularjs/rails/resource
+//= require angular-resource.min
 //= require_tree .
 //= require foundation
 $(document).foundation();

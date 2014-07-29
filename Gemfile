@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.0.0"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -51,6 +53,10 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -64,7 +70,6 @@ group :test do
   gem 'poltergeist'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
   gem 'simplecov', :require => false
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
