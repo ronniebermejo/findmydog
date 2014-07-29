@@ -70,7 +70,6 @@ group :test do
   gem 'poltergeist'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
   gem 'simplecov', :require => false
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
