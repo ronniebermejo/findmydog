@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704144414) do
+ActiveRecord::Schema.define(version: 20140730032501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: true do |t|
+    t.string   "category"
+    t.string   "url",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "owners", force: true do |t|
     t.string   "name",         null: false
@@ -34,11 +41,24 @@ ActiveRecord::Schema.define(version: 20140704144414) do
     t.string   "comments"
     t.string   "status"
     t.integer  "owner_id"
+    t.integer  "image_id"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "place_types", force: true do |t|
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "places", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "place_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
