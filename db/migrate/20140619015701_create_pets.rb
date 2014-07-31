@@ -4,6 +4,7 @@ class CreatePets < ActiveRecord::Migration
     drop_table :pets
     drop_table :owners
     drop_table :places
+    drop_table :images
   end
 
   def up
@@ -23,10 +24,8 @@ class CreatePets < ActiveRecord::Migration
       t.string :comments
       t.string :status
       t.integer :owner_id
-      t.timestamps
-    end
-
-    create_table :places, :force => true  do |t|
+      t.integer :image_id
+      t.integer :place_id
       t.timestamps
     end
 
@@ -34,6 +33,12 @@ class CreatePets < ActiveRecord::Migration
       t.timestamps
       t.integer :place_id
       t.integer :owner_id
+    end
+
+    create_table :images, :force => true do |t|
+      t.string :category
+      t.string :url, :null => false
+      t.timestamps
     end
 
   end
