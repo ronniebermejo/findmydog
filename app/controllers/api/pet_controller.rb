@@ -41,8 +41,13 @@ class Api::PetController < ApiController
       name: params[:name],
       comments: params[:comments],
       reported_as: params[:reported_as],
+      image_id: image_id,
       owner: owner,
     }
+  end
+
+  def image_url
+    Image.where(:id => @pet.image_id )
   end
 
   def owner

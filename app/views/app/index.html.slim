@@ -1,45 +1,84 @@
+script type="text/ng-template" id="myModalContent.html"
+  h3 class='panel' Find my Dog
+  h4
+    |{{pet.name}}
+  p
+    |{{pet.comments}}
+  img class="pet-small panel" src="{{pet.image_url}}"
+  label ng-click="closeModal()"
+    |cancel
+  div align="right"
+    =image_tag 'munter.png'
+
+  =fa_icon "facebook", text: "Publicar en facebook"
+
+
 div class="row"
-  div class="large-8 columns"
-    = image_tag('petfinder-lg-300x297.jpg', align: 'left')
-    h5 align="center"
-     | ¿Como podemos ayudarte?
-    = link_to "¿Buscas a tu mascota?", new_report_path , { :class => "button radius small alert" }
+
+  div class="large-6 columns"
+
+    h2 class="ciudad" Queretaro
+    dl class="sub-nav top-filtre"
+      dt Filtro:
+      dd class="active"
+        =link_to('Todos','#')
+      dd
+        =link_to('Perdidos','#')
+      dd
+        =link_to('Localizados','#')
+      dd
+        =link_to('Perros','#')
+      dd
+        =link_to('Gatos','#')
+      dd
+        =link_to('Otros','#')
+
+    div align='right'
+      label 132 perros cerca de ti
+div class="row"
+
+  div class="large-12 large-centered columns"
+    div id="map" style='width: 1000px; height: 500px;'
+
+    ul class="button-group panel"
+      li
+        = link_to "¿Buscas a tu mascota?", new_report_path , { :class => "button alert" }
+      li
+        = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button alert" }
+
+
+
+
+  div class="panel"
+    h4  Resultados  (132)
+    div class="large-2 large-offset-8 columns push"
+      h5 Ordenar por:
+      select
+        option Nombre
+        option Raza
+        option Color
+
+
+ul class="small-block-grid-3"
+
+  li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
+    img class="pet-small panel" src="{{pet.image_url}}"
     br
-    = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button radius small alert" }
-    p
-     | Aqui te ayudaremos a encontrar a tu mascota
+    h6
+      |{{pet.name}}
     hr
-  = render :partial => 'app/search_form'
+    label
+      |{{pet.comments}}
+    small
+      |Dueño:{{pet.owner.name}}
 
-div class="row"
-  div class="large-8 columns"
-    div class="button-bar"
-      ul class="button-group"
-        li
-           label class="tiny button" Perdidos
-        li
-          label class="tiny button" Encontrados
-        li
-          label class="tiny button" Cerca de mi
 
-div class="row"
-  ul class="small-block-grid-3"
-    li class="small-view" ng-repeat="pet in pets|orderBy:pet.name"
-      img src="/assets/dog.jpeg" align="top"
-      p
-        |{{pet.comments}}
-      small
-        |{{pet.owner.name}}
 
-      br
-      label class="label"
-        |{{pet.status}}
-
-      br
-      input type="button" value="view" ng-click="show($index)"
-      input type="button" value="delete" ng-click="delete($index)"
-      i class="fi-save"
-  alert
-    | alert
+    br
+    a class="small secondary tiny"
+      |Ver en mapa
+    =if user_signed_in?
+      button class="small" value="delete" ng-click="delete($index)" Borrar
+    i class="fa-save"
 
 

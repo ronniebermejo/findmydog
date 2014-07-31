@@ -30,7 +30,7 @@
 
 // $include-html-grid-classes: $include-html-classes;
 
-// $row-width: rem-calc(1000);
+$row-width: rem-calc(1500);
 // $column-gutter: rem-calc(30);
 // $total-columns: 12;
 
@@ -52,7 +52,8 @@
 // We use these as default colors throughout
 $primary-color: #efefef;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
+$alert-color: #7cd8e6;
+
 // $success-color: #43AC6A;
 
 // We use these to make sure border radius matches unless we want it different.
