@@ -1,29 +1,49 @@
 /TODO move into a separate file
-script type="text/ng-template" id="myModalContent.html"
+/modal
+script type="text/ng-template" id="myModalContent.html" ng-controller='findMyDogController'
   div class="large-6 column"
-    h3 class='panel' {{pet.name}}
-    img class="pet-small panel" src="{{pet.image_url}}" align="left"
+
+    h3 class='panel radius' {{pet.name}}
+
+    img class="panel radius" src="{{pet.image_url}}" align="left"
     p
       |{{pet.comments}}
+    hr
+    p Visto por ultima vez en: {{ pet.place.name }}
     hr
     p Dueño: {{pet.owner.name}}
     hr
     p Telefono:{{pet.owner.phone_number}}
-    label ng-click="closeModal()"
-      |cancel
+
+
+    =fa_icon "facebook", text: "Publicar en facebook"
+    =fa_icon "gplus", text: "Publicar en G+"
+
+
   div class="large-6 column"
+    dl class="sub-nav top-filtre"
+      dt Filtro:
+      dd class="active"
+        =link_to('Todos','#')
+      dd
+        =link_to('Perdidos','#')
     google-map zoom='map.zoom' center='map.center' draggable="true"
       marker coords="pet.place"
         /#Aqui se puede meter el window
         marker-label content="pet.name"
 
+    div align="center"
+      br
+      button class="tiny radius error" ng-click="createLostReport"
+        |Cerrar
 
-    div align="right"
-      =fa_icon "facebook", text: "Publicar en facebook"
-      =image_tag 'munter.png', width: "20%"
+      button class="tiny radius success" ng-click="closeModal()"
+        |Reportar
+
 //
 
 
+/Submenu
 div class="row"
 
   div class="large-6 columns"
@@ -52,11 +72,13 @@ div class="row"
       label
         |{{pets.length}} perros cerca de ti
 
+
+/Map
 div class="row"
 
   div class="large-12 large-centered columns"
     google-map zoom='map.zoom' center='map.center' draggable="true"
-      marker ng-repeat="pet in pets|orderBy:pet.name" coords="pet.place"
+      marker ng-repeat="pet in pets|orderBy: sortBy|| pet.name" coords="pet.place"
        /#Aqui se puede meter el window
        marker-label content="pet.name"
 
@@ -67,20 +89,22 @@ div class="row"
       li
         = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button alert" }
 
+div class="row"
   div class="panel"
     h4  Resultados {{pets.size}}
     div class="large-4 large-offset-8 columns push"
       h5 Ordenar por:
-      select
+      select ng-model="sortby"
         option Nombre
         option Raza
         option Color
 
+/Results
 div class="row"
   ul class="small-block-grid-3"
 
     li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
-      img class="pet-small panel" src="{{pet.image_url}}"
+      img class="pet-small panel radius" src="{{pet.image_url}}"
       br
       h6
         |{{pet.name}}
@@ -92,11 +116,8 @@ div class="row"
       small
         |Dueño:{{pet.owner.name}}
 
-
       br
       a class="small secondary tiny"
         |Ver en mapa
       -if user_signed_in?
         button class="small" ng-click="delete($index)" Borrar
-
-
