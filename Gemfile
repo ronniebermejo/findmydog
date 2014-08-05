@@ -28,7 +28,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'geocoder'
-gem 'gmaps4rails'
+
+#gem 'gmaps4rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -59,6 +60,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry'
   gem 'zeus', require: false
+end
+
+group :development, :test do
   gem 'awesome_print'
 end
 
