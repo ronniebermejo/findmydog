@@ -1,18 +1,18 @@
 class AddPlace < ActiveRecord::Migration
     def up
-
-      create_table :places do |t|
+      create_table :places, :force => true do |t|
         t.string :name
         t.string :address
         t.float :latitude
         t.float :longitude
-        t.integer :place_type_id
+        t.belongs_to :place_category
+        t.belongs_to :pet
 
         t.timestamps
       end
 
-      create_table :place_types do |t|
-        t.string :type
+      create_table :place_categories, :force => true do |t|
+        t.string :category
         t.timestamps
       end
     end
@@ -20,8 +20,7 @@ class AddPlace < ActiveRecord::Migration
 
     def down
       drop_table :places
-      drop_table :place_types
+      drop_table :place_categories
     end
-
 
 end
