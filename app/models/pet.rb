@@ -1,11 +1,24 @@
 class Pet < ActiveRecord::Base
+
   belongs_to :owner
-  has_many :image
-  has_one :location
-  validates_presence_of :name
+  belongs_to :image
+  has_many :reports
+  belongs_to :place
+
+  scope :lost, -> { where(name: 'chana')}
+
+  validates :name, presence: true
+  validates :owner, presence: true
+  validates :comments, presence: true
+  validates :image, presence: true
+
+
+  # def place
+  #   Place.find(place_id)
+  # end
 
   def image_url
-    Image.where(:id => self.image_id).first.url
+    Image.find(image_id).url
   end
 
 end
