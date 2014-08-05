@@ -6,7 +6,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'factory_girl'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'shoulda/matchers'
 require 'database_cleaner'
 
@@ -49,6 +48,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.fail_fast = true
 
 end
 
