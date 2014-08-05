@@ -36,10 +36,8 @@ ActiveRecord::Schema.define(version: 20140730032501) do
   add_index "owners", ["user_id"], name: "index_owners_on_user_id", using: :btree
 
   create_table "pets", force: true do |t|
-    t.string   "name",        null: false
-    t.string   "reported_as", null: false
-    t.string   "comments"
-    t.string   "status"
+    t.string   "name",       null: false
+    t.text     "comments"
     t.integer  "owner_id"
     t.integer  "image_id"
     t.integer  "place_id"
@@ -47,8 +45,8 @@ ActiveRecord::Schema.define(version: 20140730032501) do
     t.datetime "updated_at"
   end
 
-  create_table "place_types", force: true do |t|
-    t.string   "type"
+  create_table "place_categories", force: true do |t|
+    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,7 +56,8 @@ ActiveRecord::Schema.define(version: 20140730032501) do
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "place_type_id"
+    t.integer  "place_category_id"
+    t.integer  "pet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,7 +66,8 @@ ActiveRecord::Schema.define(version: 20140730032501) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "place_id"
-    t.integer  "owner_id"
+    t.string   "text"
+    t.integer  "pet_id"
   end
 
   create_table "users", force: true do |t|
