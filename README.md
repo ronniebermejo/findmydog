@@ -20,3 +20,7 @@
 
 
 
+```heroku run rake db:schema:load```
+
+
+

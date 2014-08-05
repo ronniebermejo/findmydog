@@ -1,16 +1,27 @@
+/TODO move into a separate file
 script type="text/ng-template" id="myModalContent.html"
-  h3 class='panel' Find my Dog
-  h4
-    |{{pet.name}}
-  p
-    |{{pet.comments}}
-  img class="pet-small panel" src="{{pet.image_url}}"
-  label ng-click="closeModal()"
-    |cancel
-  div align="right"
-    =image_tag 'munter.png'
+  div class="large-6 column"
+    h3 class='panel' {{pet.name}}
+    img class="pet-small panel" src="{{pet.image_url}}" align="left"
+    p
+      |{{pet.comments}}
+    hr
+    p Dueño: {{pet.owner.name}}
+    hr
+    p Telefono:{{pet.owner.phone_number}}
+    label ng-click="closeModal()"
+      |cancel
+  div class="large-6 column"
+    google-map zoom='map.zoom' center='map.center' draggable="true"
+      marker coords="pet.place"
+        /#Aqui se puede meter el window
+        marker-label content="pet.name"
 
-  =fa_icon "facebook", text: "Publicar en facebook"
+
+    div align="right"
+      =fa_icon "facebook", text: "Publicar en facebook"
+      =image_tag 'munter.png', width: "20%"
+//
 
 
 div class="row"
@@ -33,12 +44,22 @@ div class="row"
       dd
         =link_to('Otros','#')
 
+  div class="large-5 columns"
     div align='right'
-      label 132 perros cerca de ti
+      br
+      label Bienvenido
+      hr
+      label
+        |{{pets.length}} perros cerca de ti
+
 div class="row"
 
   div class="large-12 large-centered columns"
-    div id="map" style='width: 1000px; height: 500px;'
+    google-map zoom='map.zoom' center='map.center' draggable="true"
+      marker ng-repeat="pet in pets|orderBy:pet.name" coords="pet.place"
+       /#Aqui se puede meter el window
+       marker-label content="pet.name"
+
 
     ul class="button-group panel"
       li
@@ -46,39 +67,36 @@ div class="row"
       li
         = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button alert" }
 
-
-
-
   div class="panel"
-    h4  Resultados  (132)
-    div class="large-2 large-offset-8 columns push"
+    h4  Resultados {{pets.size}}
+    div class="large-4 large-offset-8 columns push"
       h5 Ordenar por:
       select
         option Nombre
         option Raza
         option Color
 
+div class="row"
+  ul class="small-block-grid-3"
 
-ul class="small-block-grid-3"
+    li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
+      img class="pet-small panel" src="{{pet.image_url}}"
+      br
+      h6
+        |{{pet.name}}
+      hr
+      label
+        |{{pet.comments}}
+      label
+        |Place: {{pet.place.name}}
+      small
+        |Dueño:{{pet.owner.name}}
 
-  li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
-    img class="pet-small panel" src="{{pet.image_url}}"
-    br
-    h6
-      |{{pet.name}}
-    hr
-    label
-      |{{pet.comments}}
-    small
-      |Dueño:{{pet.owner.name}}
 
-
-
-    br
-    a class="small secondary tiny"
-      |Ver en mapa
-    =if user_signed_in?
-      button class="small" value="delete" ng-click="delete($index)" Borrar
-    i class="fa-save"
+      br
+      a class="small secondary tiny"
+        |Ver en mapa
+      -if user_signed_in?
+        button class="small" ng-click="delete($index)" Borrar
 
 
