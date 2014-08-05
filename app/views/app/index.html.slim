@@ -1,45 +1,123 @@
-div class="row"
-  div class="large-8 columns"
-    = image_tag('petfinder-lg-300x297.jpg', align: 'left')
-    h5 align="center"
-     | ¿Como podemos ayudarte?
-    = link_to "¿Buscas a tu mascota?", new_report_path , { :class => "button radius small alert" }
-    br
-    = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button radius small alert" }
+/TODO move into a separate file
+/modal
+script type="text/ng-template" id="myModalContent.html" ng-controller='findMyDogController'
+  div class="large-6 column"
+
+    h3 class='panel radius' {{pet.name}}
+
+    img class="panel radius" src="{{pet.image_url}}" align="left"
     p
-     | Aqui te ayudaremos a encontrar a tu mascota
+      |{{pet.comments}}
     hr
-  = render :partial => 'app/search_form'
+    p Visto por ultima vez en: {{ pet.place.name }}
+    hr
+    p Dueño: {{pet.owner.name}}
+    hr
+    p Telefono:{{pet.owner.phone_number}}
+
+
+    =fa_icon "facebook", text: "Publicar en facebook"
+    =fa_icon "gplus", text: "Publicar en G+"
+
+
+  div class="large-6 column"
+    dl class="sub-nav top-filtre"
+      dt Filtro:
+      dd class="active"
+        =link_to('Todos','#')
+      dd
+        =link_to('Perdidos','#')
+    google-map zoom='map.zoom' center='map.center' draggable="true"
+      marker coords="pet.place"
+        /#Aqui se puede meter el window
+        marker-label content="pet.name"
+
+    div align="center"
+      br
+      button class="tiny radius error" ng-click="createLostReport"
+        |Cerrar
+
+      button class="tiny radius success" ng-click="closeModal()"
+        |Reportar
+
+//
+
+
+/Submenu
+div class="row"
+
+  div class="large-6 columns"
+
+    h2 class="ciudad" Queretaro
+    dl class="sub-nav top-filtre"
+      dt Filtro:
+      dd class="active"
+        =link_to('Todos','#')
+      dd
+        =link_to('Perdidos','#')
+      dd
+        =link_to('Localizados','#')
+      dd
+        =link_to('Perros','#')
+      dd
+        =link_to('Gatos','#')
+      dd
+        =link_to('Otros','#')
+
+  div class="large-5 columns"
+    div align='right'
+      br
+      label Bienvenido
+      hr
+      label
+        |{{pets.length}} perros cerca de ti
+
+
+/Map
+div class="row"
+
+  div class="large-12 large-centered columns"
+    google-map zoom='map.zoom' center='map.center' draggable="true"
+      marker ng-repeat="pet in pets|orderBy: sortBy|| pet.name" coords="pet.place"
+       /#Aqui se puede meter el window
+       marker-label content="pet.name"
+
+
+    ul class="button-group panel"
+      li
+        = link_to "¿Buscas a tu mascota?", new_report_path , { :class => "button alert" }
+      li
+        = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button alert" }
 
 div class="row"
-  div class="large-8 columns"
-    div class="button-bar"
-      ul class="button-group"
-        li
-           label class="tiny button" Perdidos
-        li
-          label class="tiny button" Encontrados
-        li
-          label class="tiny button" Cerca de mi
+  div class="panel"
+    h4  Resultados {{pets.size}}
+    div class="large-4 large-offset-8 columns push"
+      h5 Ordenar por:
+      select ng-model="sortby"
+        option Nombre
+        option Raza
+        option Color
 
+/Results
 div class="row"
   ul class="small-block-grid-3"
-    li class="small-view" ng-repeat="pet in pets|orderBy:pet.name"
-      img src="/assets/dog.jpeg" align="top"
-      p
+
+    li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
+      img class="pet-small panel radius" src="{{pet.image_url}}"
+      br
+      h6
+        |{{pet.name}}
+      hr
+      label
         |{{pet.comments}}
+      label
+        |Place: {{pet.place.name}}
       small
-        |{{pet.owner.name}}
+        |Dueño:{{pet.owner.name}}
 
       br
-      label class="label"
-        |{{pet.status}}
-
-      br
-      input type="button" value="view" ng-click="show($index)"
-      input type="button" value="delete" ng-click="delete($index)"
-      i class="fi-save"
-  alert
-    | alert
-
-
+      a class="small secondary tiny"
+        |Ver en mapa
+      -if user_signed_in?
+        button class="small" ng-click="delete($index)" Borrar

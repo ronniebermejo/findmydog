@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-app = angular.module('findMyDogApp', ["ngResource"])
+app = angular.module('findMyDogApp', ["ngResource",'mm.foundation','google-maps'])
+
 
 
 app.config ["$httpProvider", ($httpProvider) ->
@@ -13,16 +14,25 @@ app.config ["$httpProvider", ($httpProvider) ->
   $httpProvider.defaults.headers.common['Accept'] = "application/json"
 ]
 
-app.factory "Pet", ($resource) -> $resource "/api/pet/:id", id: "@id"
+app.factory "Pet", ($resource) -> $resource "/v1/pet/:id", id: "@id"
 
-app.controller 'findMyDogController', ($scope, Pet) ->
+app.controller 'findMyDogController', ($scope, $modal, Pet) ->
 
   $scope.pet = new Pet()
+  #$scope.pets = Pet.query({name: 'Chana'})
   $scope.pets = Pet.query()
+  $scope.modal1 = $modal
+
+  $scope.map = {
+    center: {
+      latitude: 20.6144226,
+      longitude: -100.4057373
+    },
+    zoom: 11
+  };
 
   # Delete a post
   $scope.delete = ($index) ->
-    # Yay, UX!
     if confirm("Are you sure you want to delete this post?")
       # Remove from the server
       $scope.pets[$index].$delete()
@@ -31,17 +41,30 @@ app.controller 'findMyDogController', ($scope, Pet) ->
 
   # Show post
   $scope.show = ($index) ->
-    # Remove from the server
-    alert $scope.pets[$index].name
+    $scope.pet =   $scope.pets[$index]
+    $modal.open({ templateUrl: 'myModalContent.html', scope: $scope, controller: 'modal'})
 
   # Create
   $scope.create = () ->
     $scope.pets.push Pet.save name: $scope.pet.name, comments: $scope.pet.comment, reported_as: $scope.pet.reported_as
-    alert 1
     $scope.pet.save
 
   # Create
   $scope.createLostReport = () ->
     alert("Report")
+
+  # Close modal
+  $scope.closeModal = () ->
+    alert("close")
+
+
+
+
+app.controller 'modal', ($scope, $modal) ->
+  $scope.closeModal = () ->
+    $modal.close
+
+
+
 
 

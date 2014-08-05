@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704144414) do
+ActiveRecord::Schema.define(version: 20140730032501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: true do |t|
+    t.string   "category"
+    t.string   "url",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "owners", force: true do |t|
     t.string   "name",         null: false
@@ -29,16 +36,28 @@ ActiveRecord::Schema.define(version: 20140704144414) do
   add_index "owners", ["user_id"], name: "index_owners_on_user_id", using: :btree
 
   create_table "pets", force: true do |t|
-    t.string   "name",        null: false
-    t.string   "reported_as", null: false
-    t.string   "comments"
-    t.string   "status"
+    t.string   "name",       null: false
+    t.text     "comments"
     t.integer  "owner_id"
+    t.integer  "image_id"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "place_categories", force: true do |t|
+    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "places", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "place_category_id"
+    t.integer  "pet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,7 +66,8 @@ ActiveRecord::Schema.define(version: 20140704144414) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "place_id"
-    t.integer  "owner_id"
+    t.string   "text"
+    t.integer  "pet_id"
   end
 
   create_table "users", force: true do |t|

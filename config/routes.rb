@@ -55,8 +55,10 @@ AngularjsRails4::Application.routes.draw do
   #     resources :products
   #   end
 
-  namespace :api, defaults: {format: :json} do
-    resources :pet, only: [:index, :show, :create, :update, :destroy]
+  scope module: :api , defaults: {format: :json} do
+    namespace :v1 do
+      resources :pet, only: [:index, :show, :create, :update, :destroy]
+    end
   end
 
   resources :report

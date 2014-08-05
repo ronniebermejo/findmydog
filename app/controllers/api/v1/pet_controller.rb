@@ -1,7 +1,12 @@
-class Api::PetController < ApiController
+class Api::V1::PetController < ApiController
 
   def index
-    @pet = Pet.all
+    if  params[:name]
+      @pet = Pet.where(:name => params[:name] )
+    else
+      @pet = Pet.all
+    end
+
     respond_to do |format|
       format.json { render json: @pet , root: false}
     end
@@ -15,17 +20,21 @@ class Api::PetController < ApiController
   end
 
   def create
-
     @pet = Pet.new(pet_params)
-
     if @pet.save
-      render
+      format.json { render json: @pet, status: 201  }
     else
       render json: {
-          message: 'Validation Failed',
+          message: 'Error while saving pet',
           errors: @pet.errors.full_messages
       }, status: 442
     end
+
+  end
+
+  def sort
+    parameter = params["sort"]
+    Pet.where("DESC by", parameter)
 
   end
 
@@ -40,18 +49,19 @@ class Api::PetController < ApiController
     {
       name: params[:name],
       comments: params[:comments],
-      reported_as: params[:reported_as],
-      owner: owner,
+      image: params[:image],
+      place: params[:place],
+      owner: params[:owner],
     }
   end
 
-  def owner
-
-    Owner.find_or_create_by(name: params[:name])
-
+  def image_url
+    Image.find(@pet.image_url)
   end
 
-
+  def owner
+    Owner.find_or_create_by(name: params[:name])
+  end
 
 
 end

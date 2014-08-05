@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Pet, 'Validations' do
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:owner) }
+  it { should validate_presence_of(:image) }
+  it { should validate_presence_of(:comments) }
 end
 
 

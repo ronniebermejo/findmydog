@@ -12,10 +12,25 @@
 
     <ul class="right">
       <li class="divider"></li>
+
       <li class="has-dropdown">
-        <a href="#">Main Item 1</a>
+        <a href="#">Preguntas Frequentes</a>
         <ul class="dropdown">
-          <li><label>Section Name</label></li>
+          <li><label>Precio</label></li>
+          <li class="has-dropdown">
+            <a href="#" class="">Servicios Gratis</a>
+            <ul class="dropdown">
+              <li><a href="#">Servicios premium</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Como puedo ayudar?</a></li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li class="has-dropdown">
+        <a href="#">Servicios</a>
+        <ul class="dropdown">
+          <li><label>Localizacion</label></li>
           <li class="has-dropdown">
             <a href="#" class="">Has Dropdown, Level 1</a>
             <ul class="dropdown">
@@ -46,17 +61,17 @@
           <%= link_to('Login', new_user_session_path)  %>
       <% end %>
       </li>
-      <li class="divider"></li>
-      <li class="has-dropdown">
-        <a href="#">Admin</a>
-        <ul class="dropdown">
-          <li><a href="#">Dropdown Option</a></li>
-          <li><a href="#">Dropdown Option</a></li>
-          <li><a href="#">Dropdown Option</a></li>
+      <% if user_signed_in? %>
           <li class="divider"></li>
-          <li><a href="#">See all &rarr;</a></li>
-        </ul>
-      </li>
+          <li class="has-dropdown">
+            <a href="#">Admin</a>
+            <ul class="dropdown">
+              <li><a href="#">Administracion Usarios</a></li>
+              <li class="divider"></li>
+              <li><a href="#">See all &rarr;</a></li>
+            </ul>
+          </li>
+      <%end%>
     </ul>
   </section>
 </nav>

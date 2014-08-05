@@ -1,3 +1,5 @@
 class PetSerializer < ActiveModel::Serializer
-  attributes :id, :name, :comments, :status, :owner
+  has_one :owner
+  has_one :place
+  attributes :id, :name, :comments, :image_url, :place
 end
