@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-app = angular.module('findMyDogApp', ["ngResource",'mm.foundation'])
+app = angular.module('findMyDogApp', ["ngResource",'mm.foundation','google-maps'])
+
 
 
 app.config ["$httpProvider", ($httpProvider) ->
@@ -13,13 +14,22 @@ app.config ["$httpProvider", ($httpProvider) ->
   $httpProvider.defaults.headers.common['Accept'] = "application/json"
 ]
 
-app.factory "Pet", ($resource) -> $resource "/api/pet/:id", id: "@id"
+app.factory "Pet", ($resource) -> $resource "/v1/pet/:id", id: "@id"
 
 app.controller 'findMyDogController', ($scope, $modal, Pet) ->
 
   $scope.pet = new Pet()
+  #$scope.pets = Pet.query({name: 'Chana'})
   $scope.pets = Pet.query()
   $scope.modal1 = $modal
+
+  $scope.map = {
+    center: {
+      latitude: 20.6144226,
+      longitude: -100.4057373
+    },
+    zoom: 11
+  };
 
   # Delete a post
   $scope.delete = ($index) ->
@@ -46,6 +56,8 @@ app.controller 'findMyDogController', ($scope, $modal, Pet) ->
   # Close modal
   $scope.closeModal = () ->
     alert("close")
+
+
 
 
 app.controller 'modal', ($scope, $modal) ->
