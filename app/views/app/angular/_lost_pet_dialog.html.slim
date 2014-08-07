@@ -1,0 +1,47 @@
+div class="large-6 column" id="dialog_data"
+
+  h3
+    |{{pet.name}}
+
+  br
+  img class="panel radius" src="{{pet.image_url}}" align="left"
+  |{{pet.comments}}
+  hr
+  p Visto por ultima vez en: {{ pet.place.name }}
+  hr
+  p Dueño: {{pet.owner.name}}
+  hr
+  p Telefono:{{pet.owner.phone_number}}
+  hr
+  p Recompensa:
+
+  hr
+    =fa_icon "facebook"
+    =fa_icon "google-plus"
+    =fa_icon "print"
+
+
+div class="large-6 column"
+  div align="right"
+    span ng-click="closeModal()"
+      |Cerrar
+      =fa_icon "times"
+  hr
+  dl class="sub-nav top-filtre"
+    dt Filtro:
+    dd class="active"
+      =link_to('Todos','#')
+    dd
+      =link_to('Perdidos','#')
+  google-map zoom='map.zoom' center='map.center' draggable="true"
+    marker coords="pet.place"
+      /#Aqui se puede meter el window
+      marker-label content="pet.name"
+
+  div align="center"
+    br
+    button class="tiny radius success" ng-click="createLostReport()"
+      |Lo has visto?
+    button class="tiny radius" ng-click="closeModal()"
+      |Cerrar
+
