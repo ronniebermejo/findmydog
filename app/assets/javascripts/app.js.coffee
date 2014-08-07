@@ -21,7 +21,7 @@ app.controller 'findMyDogController', ($scope, $modal, Pet) ->
   $scope.pet = new Pet()
   #$scope.pets = Pet.query({name: 'Chana'})
   $scope.pets = Pet.query()
-  $scope.modal1 = $modal
+  $scope.modal = $modal
 
   $scope.map = {
     center: {
@@ -42,7 +42,7 @@ app.controller 'findMyDogController', ($scope, $modal, Pet) ->
   # Show post
   $scope.show = ($index) ->
     $scope.pet =   $scope.pets[$index]
-    $modal.open({ templateUrl: 'myModalContent.html', scope: $scope, controller: 'modal'})
+    $scope.modal = $modal.open({ templateUrl: '/app/angular/lost_pet_dialog.html', scope: $scope} )
 
   # Create
   $scope.create = () ->
@@ -55,14 +55,11 @@ app.controller 'findMyDogController', ($scope, $modal, Pet) ->
 
   # Close modal
   $scope.closeModal = () ->
-    alert("close")
+    $scope.modal.close()
 
 
 
 
-app.controller 'modal', ($scope, $modal) ->
-  $scope.closeModal = () ->
-    $modal.close
 
 
 

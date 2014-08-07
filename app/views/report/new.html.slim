@@ -1,28 +1,45 @@
-div class="large-8 large-centered columns panel radius"
-  h2 Reporte de mascota extraviada
-  p Usuario:
-  p  = current_user.email
-  form
-      input type="text" name="name" placeholder="Nombre mascota" ng-model="pet.name"
-      div class="row"
-       div class="column large-4 small-5"
-        input type="text" name="lost_in" placeholder="Lugar donde se perdio"
-       div class="column large-4 small-5"
-        button class="tiny radius alert"
-         |mapa
-      label for="animal" Animal
-      select ng-model="pet.reported_as" name="animal"
-        option Perro
-        option Gato
-        option Vaca
-        option Zorro
-      textarea name="comments" placeholder="Commentarios, Señas particulares" ng-model="pet.comment"
-      input type="button" value="create" ng-click="create()"
-div class="column large-4 small-2"
-  br
-  ul class="recommendations"
-   h5 Te recomendamos
-   li
-    |regresar a lugar donde viste por ultima vez a tu mascota
-   li
-    |dejar agua cerca del lugar
+br
+br
+div class="row" ng-app=''
+  div class="large-8 large-centered columns panel radius"
+    h2 Reporte de mascota extraviada
+    p Usuario: #{current_user.email}
+    form
+        input type="text" name="name" placeholder="Nombre mascota" ng-model="pet.name"
+        div class="row"
+         div class="column large-4 small-5"
+          input type="text" name="lost_in" placeholder="Lugar donde se perdio"
+         div class="column large-4 small-5"
+          button class="tiny radius alert"
+           |mapa
+        div class="row"
+         div class="column large-4 small-5"
+           label for="animal" Animal
+           select ng-model="pet.reported_as" name="animal"
+             option Perro
+             option Gato
+             option Vaca
+             option Zorro
+         div class="column large-4 small-5"
+           label for="animal_subcategory"
+             | {{animal_subcategory}}
+           select ng-model="pet.animal_subcategory" name="animal"
+        div class="row"
+         div class="column large-3 small-1"
+           label for="pet_sex" Sexo
+           input type='radio' name='pet_sex' Macho
+           input type='radio' name='pet_sex' Hembra
+         div class="column large-8 small-1"
+           button class="alert tiny" Subir imagen
+
+
+        textarea name="comments" placeholder="Commentarios, Señas particulares" ng-model="pet.comment"
+        button  class="alert tiny" ng-click="create()" Generar Reporte
+  div class="column large-8 large-centered"
+    br
+    ul
+     h5 Te recomendamos:
+     li
+      |regresar a lugar donde viste por ultima vez a tu mascota
+     li
+      |dejar agua cerca del lugar
