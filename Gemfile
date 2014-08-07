@@ -28,6 +28,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'geocoder'
+gem 'aws-sdk'
 
 #gem 'gmaps4rails'
 
@@ -63,6 +64,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'awesome_print'
 end
 

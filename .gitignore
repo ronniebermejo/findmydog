@@ -30,3 +30,6 @@
 
 # Zeus
 .zeus.sock
+
+# env file
+.env
