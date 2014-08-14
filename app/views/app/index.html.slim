@@ -53,30 +53,42 @@ div ng-controller="indexController"
   div class="row"
     div
 
-      div class="large-4 columns push"
-        h5  Resultados {{pets.size}}
+      div class="large-2 columns pull"
+        |Resultados: {{pets.length}}
         label for='sortby' Ordenar por:
-        select name='sortby' ng-model="sortby"
-          option Nombre
-          option Raza
-          option Color
+        select class="radius" name='sortby' ng-model="sortby"
+          option value='name' selected='' Nombre
+          option value='place' Raza
+          option value='owner.name' Dueño
 
   /Results
   div class="row"
     ul class="small-block-grid-3"
 
-      li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
-
-        h4 class="subheader"
+      li class="small-view" ng-repeat="pet in pets| filter:filter | orderBy:sortby" ng-click="show($index)"
+        br
+        img class="pet-small panel " src="{{pet.image_url}}" align="left"
+        h2
           |{{pet.name}}
-        img class="pet-small panel radius" src="{{pet.image_url}}"
 
-        p
-          |{{pet.comments}}
-        p
-          |<strong>Lugar donde se perdio:</strong> {{pet.place.name}}
-        p
-          |<strong>Dueño:</strong>{{pet.owner.name}}
+        div
+          ul class="button-group radius"
+            li
+              a class='button tiny alert'
+                =fa_icon "facebook"
+              a class='button tiny'
+                =fa_icon "envelope-o"
+              a class='button tiny'
+                =fa_icon "comment"
+              a class='button tiny'
+                =fa_icon "google-plus-square"
+
+              p
+                |{{pet.comments}}
+              p
+                |<strong>Lugar donde se perdio:</strong> {{pet.place.name}}
+              p
+                |<strong>Dueño:</strong>{{pet.owner.name}}
 
         /-if user_signed_in?
         /  button class="tiny alert" ng-click="delete($index)" Borrar

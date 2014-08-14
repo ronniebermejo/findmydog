@@ -16,24 +16,30 @@ a {
 }
 
 p {
+
   font-size:emCalc(12px);
 }
 
 .small-view {
-  border-radius: 10px 10px 10px 10px;
-  border: 1px solid silver;
+  border-radius: 5px 5px 5px 5px;
+
   padding: 5px 5px 5px 5px;
-  font-family: Asap;
 
-  background-color: #efefef;
+
+
   h4 {
-    background-color: $alert-color;
 
-    color:  #000000;
-    text-shadow: 4px 2px 7px;
-    border-radius: 10px 10px 10px 10px;
+
   }
 
+  strong {
+    text-transform: uppercase;
+  }
+
+  div {
+
+    border-top: 1px dashed $primary-color;
+  }
   button {
     border: 1px solid $primary-color;
     font-family: 'Asap';

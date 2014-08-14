@@ -19,6 +19,7 @@ app.factory "Pet", ($resource) -> $resource "/v1/pet/:id", id: "@id"
 app.controller 'indexController', ($scope, $modal, Pet) ->
 
   $scope.pet = new Pet()
+  $scope.filter = ''
   #$scope.pets = Pet.query({name: 'Chana'})
   $scope.pets = Pet.query()
   $scope.modal = $modal
