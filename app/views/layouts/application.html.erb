@@ -13,14 +13,12 @@
 </head>
 
 <!--TODO https://github.com/geddski/overmind -->
-<body ng-app="findMyDogApp">
+<body  ngCloak>
 <div class="row">
   <%= render :partial => 'app/menus/main_menu' %>
   <%= render :partial => 'app/menus/right_menu' %>
-  <div ng-controller="findMyDogController">
-    <div class="large-9 columns">
-      <%= yield %>
-    </div>
+  <div class="large-9 columns">
+    <%= yield %>
   </div>
 </div>
 

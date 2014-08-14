@@ -1,81 +1,82 @@
-=load_ng_template('/app/angular/lost_pet_dialog')
+div ng-controller="indexController"
 
-/Submenu
-div class="row"
+  / Views
+  =load_ng_template('/app/angular/lost_pet_dialog')
 
-  div class="large-6 columns"
+  div class="row"
 
-    h2 class="ciudad" Queretaro
-    dl class="sub-nav top-filtre"
-      dt Filtro:
-      dd class="active"
-        =link_to('Todos','#')
-      dd
-        =link_to('Perdidos','#')
-      dd
-        =link_to('Localizados','#')
-      dd
-        =link_to('Perros','#')
-      dd
-        =link_to('Gatos','#')
-      dd
-        =link_to('Otros','#')
+    div class="large-6 columns"
 
-  div class="large-5 columns"
-    div align='right'
+      h2 class="ciudad" Queretaro
+      dl class="sub-nav top-filtre"
+        dt Filtro:
+        dd class="active"
+          =link_to('Todos','#')
+        dd
+          =link_to('Perdidos','#')
+        dd
+          =link_to('Localizados','#')
+        dd
+          =link_to('Perros','#')
+        dd
+          =link_to('Gatos','#')
+        dd
+          =link_to('Otros','#')
+
+    div class="large-5 columns"
       br
-      label Bienvenido
-      hr
-      label
-        |{{pets.length}} perros cerca de ti
+      ul class="button-group"
+        li
+          = link_to "¿Buscas a tu mascota?", new_report_path , { :class => "button alert small radius" }
+        li
+          = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button alert small radius" }
+      div align='right'
+
+        hr
+        label
+          |{{pets.length}} perros cerca de ti
 
 
-/Map
-div class="row"
+  /Map
+  div class="row"
 
-  div class="large-12 large-centered columns"
-    google-map zoom='map.zoom' center='map.center' draggable="true"
-      marker ng-repeat="pet in pets|orderBy: sortBy|| pet.name" coords="pet.place"
-       /#Aqui se puede meter el window
-       marker-label content="pet.name"
+    div class="large-12 large-centered columns"
+      google-map zoom='map.zoom' center='map.center' draggable="true"
+        marker ng-repeat="pet in pets|orderBy: sortBy|| pet.name" coords="pet.place"
+         /#Aqui se puede meter el window
+         marker-label content="pet.name"
 
-
-    ul class="button-group panel"
-      li
-        = link_to "¿Buscas a tu mascota?", new_report_path , { :class => "button alert" }
-      li
-        = link_to "¿Encontraste alguna mascota?", new_report_path , { :class => "button alert" }
-
-div class="row"
-  div
-
-    div class="large-4 columns push"
-      h5  Resultados {{pets.size}}
-      label for='sortby' Ordenar por:
-      select name='sortby' ng-model="sortby"
-        option Nombre
-        option Raza
-        option Color
-
-/Results
-div class="row"
-  ul class="small-block-grid-3"
-
-    li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
-      img class="pet-small panel radius" src="{{pet.image_url}}"
-      br
-      h5
-        |{{pet.name}}
-      hr
-      p
-        |{{pet.comments}}
-      p
-        |Place: {{pet.place.name}}
-      p
-        |Dueño:{{pet.owner.name}}
 
       br
-      button class="small secondary tiny"
-        |Ver en mapa
-      -if user_signed_in?
-        button class="tiny alert" ng-click="delete($index)" Borrar
+
+
+  div class="row"
+    div
+
+      div class="large-4 columns push"
+        h5  Resultados {{pets.size}}
+        label for='sortby' Ordenar por:
+        select name='sortby' ng-model="sortby"
+          option Nombre
+          option Raza
+          option Color
+
+  /Results
+  div class="row"
+    ul class="small-block-grid-3"
+
+      li class="small-view" ng-repeat="pet in pets|orderBy:pet.name" ng-click="show($index)"
+
+        h4 class="subheader"
+          |{{pet.name}}
+        img class="pet-small panel radius" src="{{pet.image_url}}"
+
+        p
+          |{{pet.comments}}
+        p
+          |<strong>Lugar donde se perdio:</strong> {{pet.place.name}}
+        p
+          |<strong>Dueño:</strong>{{pet.owner.name}}
+
+        /-if user_signed_in?
+        /  button class="tiny alert" ng-click="delete($index)" Borrar

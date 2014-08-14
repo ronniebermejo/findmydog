@@ -16,15 +16,29 @@ a {
 }
 
 p {
-  font-family:'lato';
   font-size:emCalc(12px);
 }
 
 .small-view {
   border-radius: 10px 10px 10px 10px;
-  margin-top: 10px;
-  padding: 1px 1px 1px 1px;
+  border: 1px solid silver;
+  padding: 5px 5px 5px 5px;
   font-family: Asap;
+
+  background-color: #efefef;
+  h4 {
+    background-color: $alert-color;
+
+    color:  #000000;
+    text-shadow: 4px 2px 7px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  button {
+    border: 1px solid $primary-color;
+    font-family: 'Asap';
+    width: 80%;
+  }
 
 }
 

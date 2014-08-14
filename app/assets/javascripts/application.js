@@ -18,6 +18,9 @@
 //= require angular-resource.min
 //= require foundation
 //= require underscore
+//= require angular/findmydog
+//= require angular/index_controller
+//= require angular/lost_report_index
 //= require_tree .
 
 

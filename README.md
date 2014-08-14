@@ -2,13 +2,20 @@
 
 ## Find my dog.
 
-#### Ruby version
+#### Ruby & Rails version
+
+Ruby 2.0 and Rails 4.1
 
 #### System dependencies
 
 #### Configuration
 
 #### Database creation
+
+rake db:create
+rake db:migrate
+rake db:seed
+
 
 #### Database initialization
 
