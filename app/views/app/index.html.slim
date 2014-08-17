@@ -5,7 +5,7 @@ div ng-controller="indexController"
 
   div class="row"
 
-    div class="large-6 columns"
+    div class="large-6 small-2 columns"
 
       h2 class="ciudad" Queretaro
       dl class="sub-nav top-filtre"
@@ -45,10 +45,7 @@ div ng-controller="indexController"
         marker ng-repeat="pet in pets|orderBy: sortBy|| pet.name" coords="pet.place"
          /#Aqui se puede meter el window
          marker-label content="pet.name"
-
-
       br
-
 
   div class="row"
     div
@@ -58,7 +55,7 @@ div ng-controller="indexController"
         label for='sortby' Ordenar por:
         select class="radius" name='sortby' ng-model="sortby"
           option value='name' selected='' Nombre
-          option value='place' Raza
+          option value='animal_category.category' Raza
           option value='owner.name' Dueño
 
   /Results
@@ -89,6 +86,8 @@ div ng-controller="indexController"
                 |<strong>Lugar donde se perdio:</strong> {{pet.place.name}}
               p
                 |<strong>Dueño:</strong>{{pet.owner.name}}
+              p
+                |<strong>Categoria:</strong>{{pet.animal_category.category}}
 
         /-if user_signed_in?
         /  button class="tiny alert" ng-click="delete($index)" Borrar

@@ -22,6 +22,7 @@ class CreatePets < ActiveRecord::Migration
       t.string :name, :null => false
       t.text :comments
       t.integer :owner_id
+      t.integer :animal_category_id
       t.integer :image_id
       t.integer :place_id
       t.timestamps
@@ -32,6 +33,12 @@ class CreatePets < ActiveRecord::Migration
       t.integer :place_id
       t.string :text
       t.integer :pet_id
+    end
+
+    create_table :animal_categories, :force => true do |t|
+      t.string :category
+      t.string :animal
+      t.timestamps
     end
 
     create_table :images, :force => true do |t|

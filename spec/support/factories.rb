@@ -25,6 +25,11 @@ FactoryGirl.define do
     category "Plaza comercial"
   end
 
+  factory :animal_category do
+    category "categoria"
+    animal "perro"
+  end
+
   factory :place do
     name "Place 1"
     address 'Paseo de Bonn 373, Tejeda, Queretaro, Mx'
@@ -38,6 +43,7 @@ FactoryGirl.define do
   factory :pet do
     name "Pet"
     comments "Comments"
+    animal_category
     owner
     place
     image

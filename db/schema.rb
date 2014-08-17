@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 20140730032501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "animal_categories", force: true do |t|
+    t.string   "category"
+    t.string   "animal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", force: true do |t|
     t.string   "category"
     t.string   "url",        null: false
@@ -36,9 +43,10 @@ ActiveRecord::Schema.define(version: 20140730032501) do
   add_index "owners", ["user_id"], name: "index_owners_on_user_id", using: :btree
 
   create_table "pets", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",               null: false
     t.text     "comments"
     t.integer  "owner_id"
+    t.integer  "animal_category_id"
     t.integer  "image_id"
     t.integer  "place_id"
     t.datetime "created_at"
