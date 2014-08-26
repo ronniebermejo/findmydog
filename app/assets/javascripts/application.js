@@ -20,6 +20,9 @@
 //= require widget
 //= require underscore
 //= require angular-google-maps.min
+//= require imagesloaded.pkgd.min.js
+//= require masonry.pkgd.min
+//= require angular-masonry
 //= require angular/findmydog
 //= require angular/index_controller
 //= require angular/lost_report_index
@@ -29,7 +32,6 @@
 
 $(document).foundation();
 $(function(){ $(document).foundation(); });
-
 
 
 

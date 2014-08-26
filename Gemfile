@@ -29,6 +29,8 @@ gem 'turbolinks'
 
 gem 'geocoder'
 gem 'aws-sdk'
+gem 'bourbon'
+
 
 #gem 'gmaps4rails'
 
@@ -76,6 +78,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
+  gem 'ffaker'
 end
 
 group :assets do
