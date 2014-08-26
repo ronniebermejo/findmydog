@@ -2,6 +2,7 @@ class Pet < ActiveRecord::Base
 
   belongs_to :owner
   belongs_to :image
+  belongs_to :animal_category
   has_many :reports
   belongs_to :place
 
@@ -10,6 +11,7 @@ class Pet < ActiveRecord::Base
   validates :name, presence: true
   validates :owner, presence: true
   validates :comments, presence: true
+  validates :animal_category, presence: true
   validates :image, presence: true
 
 

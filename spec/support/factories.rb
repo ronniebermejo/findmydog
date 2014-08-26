@@ -9,9 +9,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email
-    password "password"
-    password_confirmation "password"
+    email { Faker::Internet.email }
+    password "123456"
+    password_confirmation "123456"
   end
 
   factory :owner do
@@ -48,5 +48,7 @@ FactoryGirl.define do
     place
     image
   end
+
+
 
 end

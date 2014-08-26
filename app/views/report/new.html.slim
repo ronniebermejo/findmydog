@@ -4,7 +4,7 @@ div class="row" ng-controller='lostReportController'
   div class="large-8 large-centered columns panel radius"
     h2 Reporte de mascota extraviada
     p Usuario: #{current_user.email}
-    form
+    form class='directUpload'
       input type="text" name="name" placeholder="Nombre mascota" ng-model="pet.name"
       div class="row"
         div class="column large-4 small-5"
@@ -15,26 +15,37 @@ div class="row" ng-controller='lostReportController'
       div class="row"
         div class="column large-4 small-5"
           label for="animal" Animal
-          select ng-model="pet.reported_as" name="animal"
+          select ng-model="animal" name="animal"
             option Perro
             option Gato
             option Vaca
             option Zorro
         div class="column large-4 small-5"
           label for="animal_subcategory"
-            | {{animal_subcategory}}
-          select ng-model="pet.animal_subcategory" name="animal"
+            |Raza
+          select ng-model="pet.animal_subcategory" name="animal_subcategory"
+            option Perro
       div class="row"
         div class="column large-3 small-1"
           label for="pet_sex" Sexo
           input type='radio' name='pet_sex' Macho
           input type='radio' name='pet_sex' Hembra
-        div class="column large-8 small-1"
-          button class="alert tiny" ng-click='uploadImage()' Subir imagen
+      div class="row"
+        div class="column large-5 small-1"
+          label for="fileinput" Subir imagen:
+          input type='file' ng-model='fileinput' name='fileinput'
+
+        div class="column large-7"
+          img class="upload_image" id='pet_image' src="http://placehold.it/900x540&text=Foto:{{pet.name}}"
 
 
-      textarea name="comments" placeholder="Commentarios, Señas particulares" ng-model="pet.comment"
-      button  class="alert tiny" ng-click="create()" Generar Reporte
+      div class="row"
+        br
+        textarea name="comments" placeholder="Comentarios, Señas particulares" ng-model="pet.comment" rows="8" cols="50"
+        input type='hidden' name='form_data' id='form_data' value="#{@form_data}"
+        input type='hidden' name='url' id='upload_url' value="#{@s3_direct_post.url}"
+        input type='hidden' name='host' id='upload_host' value="#{@s3_direct_post.url.host}"
+        input type='submit'  class="alert tiny" ng-click='createLostReport()' Generar Reporte
   div class="column large-8 large-centered"
     br
     ul

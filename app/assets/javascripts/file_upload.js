@@ -8,8 +8,6 @@ $(function () {
         var url = $('#upload_url').attr('value');
         var host = $('#upload_host').attr('value');
         var formData = $('#form_data').attr('value');
-        console.log(formData);
-        console.log(url);
         fileInput.after(barContainer);
         fileInput.fileupload({
             fileInput: fileInput,
@@ -25,7 +23,6 @@ $(function () {
                 progressBar.css('width', progress + '%')
             },
             start: function (e) {
-                console.log(url);
                 submitButton.prop('disabled', true);
 
                 progressBar.
@@ -42,18 +39,16 @@ $(function () {
                 // extract key and generate URL from response
                 var key = $(data.jqXHR.responseXML).find("Key").text();
                 var url = host +"/"+ key;
-                alert(url);
 
                 // create hidden field
                 var input = $("<input />", { type: 'hidden', name: fileInput.attr('name'), value: url })
                 form.append(input);
-                var uploded_image = "<img src=http://"+url+">";
-                form.append(uploded_image);
+                var uploded_image_url = "http://"+url+"";
+                $(pet_image).prop('src', uploded_image_url);
             },
             fail: function (e, data) {
                 submitButton.prop('disabled', false);
 
-                console.log(data);
                 progressBar.
                         css("background", "red").
                         text("Error :c");

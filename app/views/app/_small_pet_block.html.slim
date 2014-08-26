@@ -1,0 +1,13 @@
+div class="small-view"
+  img src="{{pet.image_url}}" align="left"
+  h2
+    |{{pet.name}}
+    /  |{{pet.comments}}
+  |<strong>Se perdio en:</strong> {{pet.place.name}}<br>
+  |<strong>Dueño:</strong>{{pet.owner.name}}<br>
+  |<strong>Raza:</strong>{{pet.animal_category.category}}
+
+  h4 class="panel"
+    |¿ Encontraste a {{pet.name}} ?
+
+
