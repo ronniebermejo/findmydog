@@ -20,24 +20,24 @@ describe 'GET /v1/pet/:id' do
     pet = create(:pet)
 
     get "/v1/pet/#{pet.id}"
-
     expect(response_json).to eq(
       {
        "pet" =>
-          { "id" => pet.id,
+          {
+            "id" => pet.id,
             "name" => pet.name,
             "comments" => pet.comments,
             "image_url" => pet.image.url,
-            #TODO Fix problem with semicolons as part of the result
-            "place" => PlaceSerializer.new(pet.place).as_json[:place],
-            "owner" => OwnerSerializer.new(pet.owner).as_json[:owner]
+            "place" => PlaceSerializer.new(pet.place).as_json[:place].stringify_keys,
+            "owner" => OwnerSerializer.new(pet.owner).as_json[:owner].stringify_keys,
+            "animal_category" => AnimalCategorySerializer.new(pet.animal_category).as_json[:animal_category].stringify_keys
           }
       }
     )
 
   end
 
-  it 'queries the with a given criteria' do
+  it 'queries with the given criteria' do
 
     dog = create(:pet, name: "ronnie")
     cat = create(:pet)
@@ -59,13 +59,13 @@ end
 
 describe 'POST /v1/pet' do
 
-  it 'fails to save a pet due missing attributes' do
 
+  it 'fails to save a pet due missing attributes' do
+    pet = create(:pet)
     post '/v1/pet', {
         name: 'Ronnie',
         comments: 'comments',
-        image_url: '/assets/dog.jpg',
-        owner_id: 1,
+        image: pet.image,
     }.to_json, { 'Content-Type' => 'application/json' }
 
     body = JSON.parse(response.body)
@@ -79,8 +79,9 @@ describe 'POST /v1/pet' do
     post '/v1/pet', {
         name: 'Ronnie',
         comments: 'comments',
-        image: 1,
-        owner: 1,
+        animal_category_id: 1,
+        image_url: "/assets/perro8.jpeg",
+        owner_id: 1
     }.to_json, { 'Content-Type' => 'application/json' }
 
     body = JSON.parse(response.body)

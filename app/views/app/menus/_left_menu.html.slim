@@ -1,0 +1,49 @@
+div class="large-3 columns panel" align="center"
+  a href="/"
+    =image_tag "https://s3-us-west-2.amazonaws.com/findmydog/logo4.png"
+    h1 PerdiDOG
+
+  div class="row" align="center"
+    div class="large-8 large-centered  columns"
+      = render :partial => 'app/search_form'
+
+  div class="row"
+
+    h6 Siguenos en:
+    div align="center"
+
+      a class='button tiny secondary'
+        =fa_icon "facebook"
+      a class='button tiny secondary'
+        =fa_icon "google-plus-square"
+
+
+
+  /
+  /
+  /  ul class="sub-nav"
+  /    li
+  /      label  Perdidos: 1551
+  /    li
+  /      label  Encontrados:202
+  /    li
+  /      label  Cerca de mi:405
+  hr
+  div class="button-bar" align="center"
+    ul class="button-group center"
+      li
+        label class="tiny button secondary" Perdidos: 1551
+      li
+        label class="tiny button alert" Encontrados:202
+      li
+        label class="tiny button" Cerca de mi:405
+
+
+  br
+  hr
+  p
+   |En <strong>PerdiDog</strong> facilitamos la busqueda de mascotas, asi como de los dueños de una mascota a la cual hayas encontrado.
+  hr
+
+
+

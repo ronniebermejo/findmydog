@@ -17,13 +17,21 @@
 //= require mm-foundation-tpls-0.2.2.min
 //= require angular-resource.min
 //= require foundation
+//= require widget
 //= require underscore
-//= require_tree .
+//= require angular-google-maps.min
+//= require imagesloaded.pkgd.min.js
+//= require masonry.pkgd.min
+//= require angular-masonry
+//= require angular/findmydog
+//= require angular/index_controller
+//= require angular/lost_report_index
+//= require z.jquery.fileupload.js
+
 
 
 $(document).foundation();
 $(function(){ $(document).foundation(); });
-
 
 
 

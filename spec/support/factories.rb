@@ -9,9 +9,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email
-    password "password"
-    password_confirmation "password"
+    email { Faker::Internet.email }
+    password "123456"
+    password_confirmation "123456"
   end
 
   factory :owner do
@@ -23,6 +23,11 @@ FactoryGirl.define do
 
   factory :place_category do
     category "Plaza comercial"
+  end
+
+  factory :animal_category do
+    category "categoria"
+    animal "perro"
   end
 
   factory :place do
@@ -38,9 +43,12 @@ FactoryGirl.define do
   factory :pet do
     name "Pet"
     comments "Comments"
+    animal_category
     owner
     place
     image
   end
+
+
 
 end

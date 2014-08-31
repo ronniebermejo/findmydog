@@ -1,0 +1,8 @@
+//input type='checkbox' name="show_boxes" ng-model='show_map_pet_boxes'
+p
+  |{{show_map_pet_boxes}}
+google-map zoom='map.zoom' center='map.center' draggable="true" options="options" refresh='perform_refresh()'
+  markers fit="true"
+    marker ng-repeat="pet in pets|orderBy: sortBy|| pet.name" coords="pet.place" idKey='$index' icon='map.icon' click='show($index)'
+      window coords='pet.place' show='{{show_map_pet_boxes}}' class="label" click='show($index)'
+        img src='{{pet.image_url}}' class="small_round_image"

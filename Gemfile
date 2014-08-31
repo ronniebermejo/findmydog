@@ -28,6 +28,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'geocoder'
+gem 'aws-sdk'
+gem 'bourbon'
+
 
 #gem 'gmaps4rails'
 
@@ -63,6 +66,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'awesome_print'
 end
 
@@ -74,6 +78,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
+  gem 'ffaker'
 end
 
 group :assets do

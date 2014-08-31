@@ -30,12 +30,18 @@ GEM
     angularjs-rails-resource (1.1.1)
     arel (4.0.2)
     awesome_print (1.2.0)
+    aws-sdk (1.50.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     builder (3.1.4)
     capybara (2.3.0)
       mime-types (>= 1.16)
@@ -73,10 +79,16 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
     docile (1.1.5)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     erubis (2.7.0)
     execjs (2.2.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
+    ffaker (1.25.0)
     font-awesome-rails (4.0.0.0)
       railties (>= 3.2, < 5.0)
     foundation-icons-sass-rails (3.0.0)
@@ -226,13 +238,17 @@ DEPENDENCIES
   active_model_serializers
   angularjs-rails-resource (~> 1.1.1)
   awesome_print
+  aws-sdk
   better_errors
   binding_of_caller
+  bourbon
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner
   devise
+  dotenv-rails
   factory_girl
+  ffaker
   font-awesome-rails
   foundation-icons-sass-rails
   foundation-rails

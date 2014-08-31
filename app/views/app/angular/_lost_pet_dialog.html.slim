@@ -1,0 +1,50 @@
+div class="large-4 column small-view" id="dialog_data"
+
+  img src="{{pet.image_url}}" align="left"
+  h2
+    |{{pet.name}}
+  /  |{{pet.comments}}
+  |<strong>Se perdio en:</strong> {{pet.place.name}}<br>
+  |<strong>Dueño:</strong>{{pet.owner.name}}<br>
+  |<strong>Raza:</strong>{{pet.animal_category.category}}
+
+  h4 class="panel"
+    |¿ Encontraste a {{pet.name}} ?
+
+  hr
+  ul class="button-group radius"
+    li
+      a class='button tiny alert'
+        =fa_icon "facebook"
+      a class='button tiny'
+        =fa_icon "envelope-o"
+      a class='button tiny'
+        =fa_icon "comment"
+      a class='button tiny'
+        =fa_icon "google-plus-square"
+
+
+div class="large-4 column"
+  div align="right"
+    span ng-click="closeModal()"
+      =fa_icon "times"
+  hr
+  dl class="sub-nav top-filtre"
+    dt Filtro:
+    dd class="active"
+      =link_to('Todos','#')
+    dd
+      =link_to('Perdidos','#')
+  google-map zoom='map.zoom + 3' center='pet.place' draggable="false" options="options"
+    marker coords="pet.place" icon='map.icon' idKey='$index'
+      /#Aqui se puede meter el window
+      window show='show'
+        img src='{{pet.image_url}}' class="small_round_image"
+
+  div align="center"
+    br
+    button class="tiny radius success" ng-click="createLostReport()"
+      |Lo has visto?
+    button class="tiny radius" ng-click="closeModal()"
+      |Cerrar
+

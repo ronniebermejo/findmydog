@@ -1,0 +1,57 @@
+nav class="top-bar" data-topbar=""
+  ul class="title-area"
+    li class="name"
+      h1
+        = link_to 'Principal' , root_path
+    li class="toggle-topbar menu-icon"
+      a href="#"
+        span menu
+  section class="top-bar-section"
+
+    ul class="right"
+      li class="divider"
+
+      li class="has-dropdown"
+        a href="#"
+          |Preguntas Frequentes
+        ul class="dropdown"
+          li
+            label
+              |Precio
+          li class="has-dropdown"
+            a href="#" class="" Servicios Gratis
+            ul class="dropdown"
+              li
+                a href="#" Servicios premium
+              li
+                a href="#" Como puedo ayudar?
+      li class="divider"
+      li class="has-dropdown"
+        a href="#" Servicios
+        ul class="dropdown"
+          li
+            label Localizacion
+          li class="has-dropdown"
+            a href="#" class=""
+              |Has Dropdown, Level 1
+            ul class="dropdown"
+              li
+                a href="#"
+                  | Dropdown Options
+          li class="divider"
+          li
+          -if user_signed_in?
+            =link_to('Logout', destroy_user_session_path, :method  => :delete)
+          -else
+            =link_to('Login', new_user_session_path)
+
+        -if user_signed_in?
+          li class="divider"
+          li class="has-dropdown"
+            a href="#" Admin
+            ul class="dropdown"
+              li
+                a href="#" Administracion Usarios
+              li class="divider"
+              li
+                a href="#" See all &rarr;

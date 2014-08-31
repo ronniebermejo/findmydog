@@ -1,28 +1,32 @@
+/this page has a good example, https://www.pley.com/signup/
+br
+br
 div class="large-6 large-centered columns panel radius"
-  br
-  br
   h2 Entrar
 
+
+
   =form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-   div
+    = devise_error_messages!
     = f.label :email
     = f.email_field :email, autofocus: true
 
-   div
+
     = f.label :password
     = f.password_field :password, autocomplete: "off"
 
-    = if devise_mapping.rememberable?
+    - if devise_mapping.rememberable?
       = f.check_box :remember_me
       = f.label :remember_me
-    div class="panel"
-      h3
+
+    div
+      button class="tiny secondary"
         =fa_icon "facebook-square"
-      p Usar cuenta de facebook
-    div class="panel"
-      h3
+        |  Usar cuenta de facebook
+    div
+      button class="tiny secondary"
         =fa_icon "google-plus-square"
-      p Usar cuenta de google plus
+        |Usar cuenta de google plus
 
     = f.submit "Entrar"
   =render "users/shared/links"

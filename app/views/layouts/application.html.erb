@@ -13,14 +13,12 @@
 </head>
 
 <!--TODO https://github.com/geddski/overmind -->
-<body ng-app="findMyDogApp">
+<body  ngCloak>
 <div class="row">
   <%= render :partial => 'app/menus/main_menu' %>
-  <%= render :partial => 'app/menus/right_menu' %>
-  <div ng-controller="findMyDogController">
-    <div class="large-9 columns">
-      <%= yield %>
-    </div>
+  <%= render :partial => 'app/menus/left_menu' %>
+  <div class="large-9 columns">
+    <%= yield %>
   </div>
 </div>
 
@@ -28,8 +26,8 @@
   <div class="large-12 columns">
     <ul class="breadcrumbs">
       <li><a href="/main">Principal</a></li>
-      <li><a href="#">Citas</a></li>
-      <li><a href="/paciente">Pacientes</a></li>
+      <li><a href="#">Rescatados</a></li>
+      <li><a href="/paciente">Localizados</a></li>
       <li class="current"><a href="#">Servicios</a></li>
     </ul>
   </div>
@@ -37,5 +35,6 @@
 <script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" type="text/javascript"></script>
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>
 <%= javascript_include_tag "application" %>
+<%= javascript_include_tag "file_upload" %>
 </body>
 </html>
