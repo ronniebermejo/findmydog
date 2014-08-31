@@ -38,20 +38,20 @@ nav class="top-bar" data-topbar=""
               li
                 a href="#"
                   | Dropdown Options
-          li class="divider"
-          li
-          -if user_signed_in?
-            =link_to('Logout', destroy_user_session_path, :method  => :delete)
-          -else
-            =link_to('Login', new_user_session_path)
-
+      li class="divider"
+      li
         -if user_signed_in?
-          li class="divider"
-          li class="has-dropdown"
-            a href="#" Admin
-            ul class="dropdown"
-              li
-                a href="#" Administracion Usarios
-              li class="divider"
-              li
-                a href="#" See all &rarr;
+          =link_to('Logout', destroy_user_session_path, :method  => :delete)
+        -else
+          =link_to('Login', new_user_session_path)
+
+      -if user_signed_in?
+        li class="divider"
+        li class="has-dropdown"
+          a href="#" Admin
+          ul class="dropdown"
+            li
+              a href="#" Administracion Usarios
+            li class="divider"
+            li
+              a href="#" See all &rarr;
