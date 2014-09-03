@@ -79,4 +79,10 @@ AngularjsRails4::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.assets.js_compressor = Uglifier.new(mangle: false)
+
+  #TODO
+  #Mailer configuration for heroku, should change once we get the final domain
+  config.action_mailer.default_url_options = { :host => 'findmydog.herokuapp.com' }
+
+
 end
