@@ -4,6 +4,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'factory_girl'
 require 'simplecov'
 require 'cucumber/rails'
 
@@ -90,8 +91,8 @@ Capybara.register_driver :poltergeist do |app|
       debug: false,
       js_errors: false,
       timeout: 20,
-      phantomjs: '/usr/local/Cellar/phantomjs/1.9.7/bin/phantomjs',
-      phantomjs_options: ['--load-images=yes', '--disk-cache=false', '--ignore-ssl-errors=yes'],
+      phantomjs: ENV['PHANTOMJS_EXEC'],
+      phantomjs_options: ['--load-images=no', '--disk-cache=false', '--ignore-ssl-errors=yes'],
       inspector: false
   )
 end
