@@ -1,6 +1,6 @@
 div class="large-4 column small-view" id="dialog_data"
 
-  img src="{{pet.image_url}}" align="left"
+  img ng-src="{{pet.image_url}}" align="left"
   h2
     |{{pet.name}}
   /  |{{pet.comments}}
@@ -39,7 +39,7 @@ div class="large-4 column"
     marker coords="pet.place" icon='map.icon' idKey='$index'
       /#Aqui se puede meter el window
       window show='show'
-        img src='{{pet.image_url}}' class="small_round_image"
+        img ng-src='{{pet.image_url}}' class="small_round_image"
 
   div align="center"
     br
