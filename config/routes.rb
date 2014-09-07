@@ -62,6 +62,7 @@ AngularjsRails4::Application.routes.draw do
   end
 
   resources :report
+  resources :animal_category
 
   get 's3_service' => 'app#s3_access_token'
 
