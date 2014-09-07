@@ -1,4 +1,5 @@
 @import "bourbon";
+@import "animate";
 @import "fonts";
 @import "color_schema";
 @import "foundation_and_overrides";
@@ -16,6 +17,20 @@ button, .button {
   font-style: Bold;
 }
 
+tab {
+  border: 2px solid #000000;
+}
+tabset {
+  border: 2px solid #000000;
+
+
+}
+tab-heading {
+  font-family: 'Changa One', cursive;
+}
+
+
+
 .call_to_action {
   font-family: 'Changa One', cursive;;
   color: #000000;
@@ -23,9 +38,22 @@ button, .button {
   font-size: emCalc(22px);
 }
 
+.ng-enter, .ng-move{
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.ng-leave{
+  -webkit-animation: fadeOut 1s;
+  -moz-animation: fadeOut 1s;
+  -o-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+}
+
 h1 {
   font-family: 'Changa One', cursive;
-  font-size: emCalc(81px);
+  font-size: emCalc(61px);
 }
 
 h2 {
@@ -227,6 +255,12 @@ button:hover {
   box-shadow: 0 0 3px rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .8);
+
+}
+
+.app-icons {
+
+  font-size: emCalc(28px);
 
 }
 
