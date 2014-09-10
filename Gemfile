@@ -30,6 +30,7 @@ gem 'turbolinks'
 gem 'geocoder'
 gem 'aws-sdk'
 gem 'bourbon'
+gem 'seedbank'
 
 
 #gem 'gmaps4rails'
