@@ -5,6 +5,7 @@
 # files.
 
 require 'simplecov'
+require 'factory_girl'
 require 'cucumber/rails'
 
 Dir[File.dirname(__FILE__) + '/*.rb'].each { |f| require f }

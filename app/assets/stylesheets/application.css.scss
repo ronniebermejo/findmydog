@@ -1,4 +1,6 @@
 @import "bourbon";
+@import "animate";
+@import "logo_animation";
 @import "fonts";
 @import "color_schema";
 @import "foundation_and_overrides";
@@ -16,6 +18,20 @@ button, .button {
   font-style: Bold;
 }
 
+tab {
+  border: 2px solid #000000;
+}
+tabset {
+  border: 2px solid #000000;
+
+
+}
+tab-heading {
+  font-family: 'Changa One', cursive;
+}
+
+
+
 .call_to_action {
   font-family: 'Changa One', cursive;;
   color: #000000;
@@ -23,21 +39,35 @@ button, .button {
   font-size: emCalc(22px);
 }
 
+.ng-enter, .ng-move{
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+.ng-leave{
+  -webkit-animation: fadeOut 1s;
+  -moz-animation: fadeOut 1s;
+  -o-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+}
+
 h1 {
   font-family: 'Changa One', cursive;
-  font-size: emCalc(81px);
+  font-size: emCalc(61px);
 }
 
 h2 {
   font-family: 'Changa One', cursive;
-  font-size: emCalc(31px);
+  font-size: emCalc(41px);
+  display: inline;
 }
 
 form {
 
-  font-size: emCalc(11px);
+  font-size: emCalc(15px);
   label {
-    font-size: emCalc(11px);
+    font-size: emCalc(15px);
   }
 
   input {
@@ -55,6 +85,11 @@ a {
 
 p {
   font-size: emCalc(12px);
+}
+
+label {
+  font-size: emCalc(14px);
+
 }
 
 .box {
@@ -82,6 +117,7 @@ p {
     margin-right: 5px;
     border: 2px solid silver;
     border-radius: 0px 70px 70px 0px;
+    width: 120px;
   }
 
   h4 {
@@ -168,43 +204,18 @@ p {
 }
 
 button {
-  text-transform: uppercase;
-  border: 1px solid #171717;
-  -webkit-box-shadow: #CCCCCC 0px 1px 0px inset;
-  -moz-box-shadow: #CCCCCC 0px 1px 0px inset;
-  box-shadow: #CCCCCC 0px 1px 0px inset;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  font-size: 15px;
-  font-family: tahoma, verdana, arial, sans-serif;
-  padding: 10px 10px 10px 10px;
-  text-decoration: none;
-  display: inline-block;
-  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
-  font-weight: bold;
-  color: #FFFFFF;
-  background-color: #333333;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#000000));
-  background-image: -webkit-linear-gradient(top, #333333, #000000);
-  background-image: -moz-linear-gradient(top, #333333, #000000);
-  background-image: -ms-linear-gradient(top, #333333, #000000);
-  background-image: -o-linear-gradient(top, #333333, #000000);
-  background-image: linear-gradient(to bottom, #333333, #000000);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#333333, endColorstr=#000000);
+  display: inline;
+  include: label;
+  box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0,0,0,0.25);
+  border-radius: 3px;
+
 }
 
 button:hover {
   border: 1px solid #666666;
   background-color: #1a1a1a;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#1a1a1a), to(#1a1a1a));
-  background-image: -webkit-linear-gradient(top, #1a1a1a, #1a1a1a);
-  background-image: -moz-linear-gradient(top, #1a1a1a, #1a1a1a);
-  background-image: -ms-linear-gradient(top, #1a1a1a, #1a1a1a);
-  background-image: -o-linear-gradient(top, #1a1a1a, #1a1a1a);
-  background-image: linear-gradient(to bottom, #1a1a1a, #1a1a1a);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1a1a1a, endColorstr=#1a1a1a);
 }
+
 
 .round_image {
   width: 100px;
@@ -228,6 +239,17 @@ button:hover {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .8);
 
+}
+
+.app-icons {
+   font-size: emCalc(28px);
+ }
+
+.big-icons {
+  font-size: emCalc(58px);
+  display: inline;
+  font-shadow: 0 0 3px rgba(0, 0, 0, .8);
+  color: $primary-color;
 }
 
 .rounded_icon {
