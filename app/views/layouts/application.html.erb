@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title><%= content_for?(:title) ? yield(:title) : "Find my dog" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "PerdiDog" %></title>
 
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "vendor/modernizr" %>
@@ -25,8 +25,8 @@
 <footer class="row">
   <div class="large-12 columns">
     <ul class="breadcrumbs">
-      <li><a href="/main">Principal</a></li>
-      <li><a href="#">Rescatados</a></li>
+      <li><a href="/">Principal</a></li>
+      <li><a href="/report/new">Reportar perro perdido</a></li>
       <li><a href="/paciente">Localizados</a></li>
       <li class="current"><a href="#">Servicios</a></li>
     </ul>
